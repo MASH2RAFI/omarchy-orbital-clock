@@ -56,9 +56,9 @@ omarchy restart shell
 git clone https://github.com/MASH2RAFI/omarchy-orbital-clock.git ~/Projects/omarchy-orbital-clock
 
 ln -sfn ~/Projects/omarchy-orbital-clock \
-  ~/.config/omarchy/plugins/mashrafi.orbital-clock
+  ~/.config/omarchy/plugins/MASH2RAFI.orbital-clock
 
-omarchy plugin enable mashrafi.orbital-clock
+omarchy plugin enable MASH2RAFI.orbital-clock
 omarchy restart shell
 ```
 
@@ -66,12 +66,12 @@ omarchy restart shell
 
 ```bash
 git clone https://github.com/MASH2RAFI/omarchy-orbital-clock.git
-cp -r omarchy-orbital-clock ~/.config/omarchy/plugins/mashrafi.orbital-clock
-omarchy plugin enable mashrafi.orbital-clock
+cp -r omarchy-orbital-clock ~/.config/omarchy/plugins/MASH2RAFI.orbital-clock
+omarchy plugin enable MASH2RAFI.orbital-clock
 omarchy restart shell
 ```
 
-The plugin id **must** match the directory name: `mashrafi.orbital-clock`.
+The plugin id **must** match the directory name: `MASH2RAFI.orbital-clock`.
 
 ## Configuration
 
@@ -81,7 +81,7 @@ Add or edit the plugin entry in `~/.config/omarchy/shell.json`:
 {
   "plugins": [
     {
-      "id": "mashrafi.orbital-clock",
+      "id": "MASH2RAFI.orbital-clock",
       "scale": 1,
       "hourScale": 1,
       "dateScale": 1,
@@ -134,7 +134,7 @@ Each monitor has a **Show clock on this monitor** toggle; **Select all** / **Sel
 You can also open it from the terminal:
 
 ```bash
-omarchy-shell shell summon mashrafi.orbital-clock "{}"
+omarchy-shell shell summon MASH2RAFI.orbital-clock "{}"
 ```
 
 Close with **Esc**, clicking the scrim, or the **Close** button.
@@ -321,7 +321,7 @@ Rescan plugins and open the settings panel from the terminal:
 
 ```bash
 omarchy-shell shell rescanPlugins
-omarchy-shell shell summon mashrafi.orbital-clock "{}"
+omarchy-shell shell summon MASH2RAFI.orbital-clock "{}"
 ```
 
 Common issues:
@@ -354,8 +354,8 @@ Common issues:
 ## Uninstall
 
 ```bash
-omarchy plugin disable mashrafi.orbital-clock
-rm ~/.config/omarchy/plugins/mashrafi.orbital-clock   # skip if symlink — remove link only
+omarchy plugin disable MASH2RAFI.orbital-clock
+rm ~/.config/omarchy/plugins/MASH2RAFI.orbital-clock   # skip if symlink — remove link only
 omarchy restart shell
 ```
 

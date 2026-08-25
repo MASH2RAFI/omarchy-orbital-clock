@@ -19,7 +19,7 @@ Item {
   property bool closingFromHost: false
 
   readonly property bool openedState: root.opened
-  readonly property string pluginId: manifest && manifest.id ? manifest.id : "mashrafi.orbital-clock"
+  readonly property string pluginId: manifest && manifest.id ? manifest.id : "MASH2RAFI.orbital-clock"
   readonly property bool popupBlocked: positionField.popupOpen
     || centerLayoutField.popupOpen
     || screenModeField.popupOpen
@@ -192,7 +192,7 @@ Item {
     visible: root.opened
     anchors { top: true; bottom: true; left: true; right: true }
     color: "transparent"
-    WlrLayershell.namespace: "mashrafi-orbital-clock-settings"
+    WlrLayershell.namespace: "MASH2RAFI-orbital-clock-settings"
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: root.opened ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
     exclusionMode: ExclusionMode.Ignore

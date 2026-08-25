@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "mashrafi.orbital-clock",
+  "id": "MASH2RAFI.orbital-clock",
   "name": "Orbital Clock",
   "version": "1.0.0",
-  "author": "mashrafi",
+  "author": "MASH2RAFI",
   "description": "Desktop orbital clock with smooth minute/second rings, independent sizing controls, configurable ring arc, and a three-tab GUI settings panel on the wallpaper layer",
   "kinds": ["service", "panel"],
   "entryPoints": {

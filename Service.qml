@@ -14,7 +14,7 @@ Item {
   property var shell: null
   property var manifest: null
 
-  readonly property string pluginId: manifest && manifest.id ? manifest.id : "mashrafi.orbital-clock"
+  readonly property string pluginId: manifest && manifest.id ? manifest.id : "MASH2RAFI.orbital-clock"
   readonly property var pluginEntry: {
     if (shell && shell.shellConfig) shell.shellConfig
     return Config.entryOrDefault(shell, root.pluginId)
@@ -181,7 +181,7 @@ Item {
         window: panel
       }
 
-      WlrLayershell.namespace: "mashrafi-orbital-clock"
+      WlrLayershell.namespace: "MASH2RAFI-orbital-clock"
       WlrLayershell.layer: WlrLayer.Bottom
       WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
       exclusionMode: ExclusionMode.Ignore
