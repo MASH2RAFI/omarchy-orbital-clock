@@ -6,7 +6,14 @@ The clock lives on the wallpaper layer (below windows), respects the Omarchy bar
 
 ## Preview
 
-Place the clock on the right edge (`middle-right`) with a vertical bar for the intended layout: hour against the bar, rings curving inward, separate minute/second capsules on the left focus point.
+All shots use `top-right` with a vertical bar — hour against the bar, rings curving inward, minute/second capsules at the focus.
+
+| Space wallpaper | Light wallpaper | Dark layered wallpaper |
+| --- | --- | --- |
+| ![Orbital Clock on a space wallpaper](preview.png) | ![Orbital Clock on a light minimal wallpaper](docs/reference-light-wallpaper.png) | ![Orbital Clock on a dark layered wallpaper](docs/reference-dark-layers.png) |
+| **Contrast** rings on a busy background | **Mono** rings on a minimal background | Full rings with tick labels on a dark theme |
+
+`preview.png` is the marketplace listing image. Additional reference shots live in [`docs/`](docs/).
 
 ## Features
 
@@ -36,10 +43,17 @@ Place the clock on the right edge (`middle-right`) with a vertical bar for the i
 
 ## Installation
 
-### Option A — Symlink (recommended for development)
+### Option A — Omarchy plugin command (recommended)
 
 ```bash
-git clone <your-repo-url> ~/Projects/omarchy-orbital-clock
+omarchy plugin add https://github.com/MASH2RAFI/omarchy-orbital-clock.git --enable
+omarchy restart shell
+```
+
+### Option B — Symlink (development)
+
+```bash
+git clone https://github.com/MASH2RAFI/omarchy-orbital-clock.git ~/Projects/omarchy-orbital-clock
 
 ln -sfn ~/Projects/omarchy-orbital-clock \
   ~/.config/omarchy/plugins/mashrafi.orbital-clock
@@ -48,9 +62,10 @@ omarchy plugin enable mashrafi.orbital-clock
 omarchy restart shell
 ```
 
-### Option B — Copy into plugins directory
+### Option C — Copy into plugins directory
 
 ```bash
+git clone https://github.com/MASH2RAFI/omarchy-orbital-clock.git
 cp -r omarchy-orbital-clock ~/.config/omarchy/plugins/mashrafi.orbital-clock
 omarchy plugin enable mashrafi.orbital-clock
 omarchy restart shell
@@ -260,6 +275,10 @@ Turn off **Seconds ring** (General tab) for the lowest CPU use (~1 repaint/sec).
 ```
 omarchy-orbital-clock/
 ├── manifest.json          # Plugin metadata and settings schema
+├── preview.png            # Marketplace preview screenshot
+├── docs/                  # Extra reference screenshots for README
+│   ├── reference-light-wallpaper.png
+│   └── reference-dark-layers.png
 ├── Service.qml            # Layer-shell window, placement, config wiring
 ├── OrbitalClockFace.qml   # Clock UI: rings, capsules, hour, date
 ├── RingCanvas.qml         # 60-tick ring dial (minute + second rings)
