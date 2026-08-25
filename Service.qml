@@ -36,6 +36,8 @@ Item {
     root.cfg.position, root.barPos, root.barVertical, root.barClearance, root.cfg.barPadding
   )
 
+  readonly property int monitorStateStdoutCap: 256
+
   function refreshMonitorNames() {
     if (!monitorStateProc.running) monitorStateProc.running = true
   }
@@ -122,12 +124,15 @@ Item {
 
   Process {
     id: monitorStateProc
-    command: ["omarchy-monitor-state"]
+    // Extract internal monitor name (line 2) and cap stdout before StdioCollector.
+    command: [
+      "sh", "-c",
+      "omarchy-monitor-state 2>/dev/null | sed -n '2p' | head -c " + root.monitorStateStdoutCap
+    ]
     stdout: StdioCollector {
       waitForEnd: true
       onStreamFinished: {
-        var lines = String(text || "").split("\n")
-        root.internalMonitorName = String(lines[1] || "").trim()
+        root.internalMonitorName = String(text || "").trim()
       }
     }
   }
