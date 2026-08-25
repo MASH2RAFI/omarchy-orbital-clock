@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Cursor / local tooling
+.cursor/
+
+# QML / Qt caches
+.qmlls.ini
+.qmlls/
+*.qmlc
+*.jsc
+.qmake.cache
+.qmake.stash
+
+# Logs and temp
+*.log
+*.tmp
+*.bak

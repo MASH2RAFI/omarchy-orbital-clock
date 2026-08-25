@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "id": "mashrafi.orbital-clock",
+  "name": "Orbital Clock",
+  "version": "1.0.0",
+  "author": "mashrafi",
+  "description": "Desktop orbital clock with smooth minute/second rings, independent sizing controls, configurable ring arc, and a three-tab GUI settings panel on the wallpaper layer",
+  "kinds": ["service", "panel"],
+  "entryPoints": {
+    "service": "Service.qml",
+    "panel": "SettingsPanel.qml"
+  },
+  "schema": [
+    {
+      "key": "scale",
+      "type": "number",
+      "label": "Layout size",
+      "defaultValue": 1,
+      "description": "Capsule chrome and dial padding from 0.5 to 2.5 — independent of ring geometry and text sizes"
+    },
+    {
+      "key": "hourScale",
+      "type": "number",
+      "label": "Hour size",
+      "defaultValue": 1,
+      "description": "Hour numeral from 0.5 to 2.5"
+    },
+    {
+      "key": "dateScale",
+      "type": "number",
+      "label": "Date size",
+      "defaultValue": 1,
+      "description": "Date block from 0.5 to 2.5"
+    },
+    {
+      "key": "subtimeScale",
+      "type": "number",
+      "label": "Subtime size",
+      "defaultValue": 1,
+      "description": "Minute/second line and capsule text from 0.5 to 2.5"
+    },
+    {
+      "key": "ringLabelScale",
+      "type": "number",
+      "label": "Ring label size",
+      "defaultValue": 1,
+      "description": "00–59 tick labels on the rings from 0.5 to 2.5"
+    },
+    {
+      "key": "position",
+      "type": "string",
+      "label": "Position",
+      "defaultValue": "middle-right",
+      "description": "Anchor on the wallpaper: top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right"
+    },
+    {
+      "key": "use24h",
+      "type": "boolean",
+      "label": "24-hour clock",
+      "defaultValue": false
+    },
+    {
+      "key": "showSeconds",
+      "type": "boolean",
+      "label": "Show seconds ring",
+      "defaultValue": true
+    },
+    {
+      "key": "showDate",
+      "type": "boolean",
+      "label": "Show date",
+      "defaultValue": true
+    },
+    {
+      "key": "accentMode",
+      "type": "string",
+      "label": "Ring colors",
+      "defaultValue": "contrast",
+      "description": "contrast picks ring colors opposite the theme background; accent uses theme accent; theme uses foreground/muted; mono uses foreground only"
+    },
+    {
+      "key": "centerLayout",
+      "type": "string",
+      "label": "Layout style",
+      "defaultValue": "orbit",
+      "description": "Presentation style — orbit, minimal, sunburst, single, or digital. Focus direction and border hugging follow position; arc span is set by ringArcDegrees."
+    },
+    {
+      "key": "ringDiameter",
+      "type": "number",
+      "label": "Ring diameter",
+      "defaultValue": 0.40,
+      "description": "Outer ring size as a fraction of screen height (0.25–0.55)"
+    },
+    {
+      "key": "ringGap",
+      "type": "number",
+      "label": "Ring spacing",
+      "defaultValue": 48,
+      "description": "Gap between minute and seconds rings in pixels (24–100) — independent of layout size"
+    },
+    {
+      "key": "ringArcDegrees",
+      "type": "number",
+      "label": "Ring arc",
+      "defaultValue": 0,
+      "description": "Visible ring arc in degrees (30–360), centered on the dial focus. 0 or omitted uses position default (90/180/360). 360 shows the full circle."
+    },
+    {
+      "key": "ringTransparency",
+      "type": "number",
+      "label": "Ring transparency",
+      "defaultValue": 1,
+      "description": "Ring visibility for both minute and seconds rings (0–100%)"
+    },
+    {
+      "key": "minuteRingOpacity",
+      "type": "number",
+      "label": "Minute ring opacity",
+      "defaultValue": 1,
+      "description": "Legacy — use ringTransparency instead"
+    },
+    {
+      "key": "secondRingOpacity",
+      "type": "number",
+      "label": "Seconds ring opacity",
+      "defaultValue": 1,
+      "description": "Legacy — use ringTransparency instead"
+    },
+    {
+      "key": "margin",
+      "type": "number",
+      "label": "Edge margin",
+      "defaultValue": 12,
+      "description": "Distance from screen edge in pixels (hour hugs this edge)"
+    },
+    {
+      "key": "screenMode",
+      "type": "string",
+      "label": "Show on",
+      "defaultValue": "all",
+      "description": "Which monitors display the clock: all, selected, primary (internal), focused, or external only"
+    },
+    {
+      "key": "selectedMonitors",
+      "type": "string",
+      "label": "Selected monitors",
+      "defaultValue": "",
+      "description": "Monitor names to show when screenMode is selected (stored as a list in shell.json)"
+    },
+    {
+      "key": "perMonitorScale",
+      "type": "boolean",
+      "label": "Scale per monitor",
+      "defaultValue": false,
+      "description": "When true, multiply size by each monitor height relative to the reference height"
+    },
+    {
+      "key": "scaleReferenceHeight",
+      "type": "number",
+      "label": "Scale reference height",
+      "defaultValue": 1080,
+      "description": "Reference monitor height (px) used when scale per monitor is enabled"
+    },
+    {
+      "key": "barPadding",
+      "type": "number",
+      "label": "Bar padding",
+      "defaultValue": 0,
+      "description": "Extra inset from the Omarchy bar. 0 auto-detects when the bar shares the same edge."
+    },
+    {
+      "key": "clockFont",
+      "type": "string",
+      "label": "Clock font",
+      "defaultValue": "Liberation Sans"
+    },
+    {
+      "key": "labelFont",
+      "type": "string",
+      "label": "Ring label font",
+      "defaultValue": "JetBrainsMono Nerd Font,JetBrainsMono NF"
+    }
+  ]
+}

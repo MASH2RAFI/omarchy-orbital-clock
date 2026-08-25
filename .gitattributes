@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+*.qml text linguist-language=QML
+*.js text linguist-language=JavaScript
+*.json text
+*.md text
