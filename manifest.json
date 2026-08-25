@@ -139,14 +139,7 @@
       "type": "string",
       "label": "Show on",
       "defaultValue": "all",
-      "description": "Which monitors display the clock: all, selected, primary (internal), focused, or external only"
-    },
-    {
-      "key": "selectedMonitors",
-      "type": "string",
-      "label": "Selected monitors",
-      "defaultValue": "",
-      "description": "Monitor names to show when screenMode is selected (stored as a list in shell.json)"
+      "description": "Which monitors display the clock: all, selected (custom picks), primary (internal), focused, or external only. Custom monitor picks are stored as a list in shell.json (Monitors tab)."
     },
     {
       "key": "perMonitorScale",

@@ -37,9 +37,16 @@ Item {
   )
 
   readonly property int monitorStateStdoutCap: 256
+  readonly property int monitorStateTimeoutMs: 5000
 
   function refreshMonitorNames() {
-    if (!monitorStateProc.running) monitorStateProc.running = true
+    if (monitorStateProc.running) return
+    monitorStateProc.running = true
+    monitorStateTimeout.restart()
+  }
+
+  function finishMonitorStatePoll() {
+    monitorStateTimeout.stop()
   }
 
   function shouldShowOnScreen(screen) {
@@ -122,6 +129,16 @@ Item {
     onTriggered: root.refreshMonitorNames()
   }
 
+  Timer {
+    id: monitorStateTimeout
+    interval: root.monitorStateTimeoutMs
+    repeat: false
+    onTriggered: {
+      if (monitorStateProc.running)
+        monitorStateProc.running = false
+    }
+  }
+
   Process {
     id: monitorStateProc
     // Extract internal monitor name (line 2) and cap stdout before StdioCollector.
@@ -129,10 +146,12 @@ Item {
       "sh", "-c",
       "omarchy-monitor-state 2>/dev/null | sed -n '2p' | head -c " + root.monitorStateStdoutCap
     ]
+    onExited: root.finishMonitorStatePoll()
     stdout: StdioCollector {
       waitForEnd: true
       onStreamFinished: {
         root.internalMonitorName = String(text || "").trim()
+        root.finishMonitorStatePoll()
       }
     }
   }

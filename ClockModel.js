@@ -489,8 +489,10 @@ function shouldShowOnScreen(screen, mode, internalName, focusedName, selectedMon
     if (internalName !== "") return name === internalName
     return focusedName !== "" && name === focusedName
   }
-  if (mode === "external")
-    return internalName !== "" && name !== internalName
+  if (mode === "external") {
+    if (internalName !== "") return name !== internalName
+    return focusedName !== "" && name !== focusedName
+  }
   return true
 }
 

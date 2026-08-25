@@ -328,6 +328,7 @@ Item {
 
                 OrbitalClockFace {
                   id: previewFace
+                  active: root.opened
                   position: root.draft.position
                   centerLayout: root.draft.centerLayout
                   ringDiameter: root.draft.ringDiameter
@@ -871,7 +872,7 @@ Item {
               Text {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                text: "Ring repaint matches each monitor refresh rate via Hyprland. The settings preview stays on a slower tick."
+                text: "Ring repaint is capped at 60 Hz per monitor (1 Hz when seconds are off). The settings preview uses a slower tick while open."
                 color: Qt.darker(Color.foreground, 1.45)
                 font.family: Style.font.family
                 font.pixelSize: Style.font.caption
