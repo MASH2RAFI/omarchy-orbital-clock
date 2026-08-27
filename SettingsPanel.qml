@@ -183,6 +183,8 @@ Item {
   }
 
   function requestClose() {
+    if (root.draft.screenMode === "selected" && root.draft.selectedMonitors.length === 0)
+      root.patchDraft({ screenMode: "all", selectedMonitors: root.allScreenNames() })
     if (shell && typeof shell.hide === "function") shell.hide(root.pluginId)
     else root.close()
   }
@@ -830,7 +832,7 @@ Item {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 visible: root.draft.screenMode === "selected" && root.draft.selectedMonitors.length === 0
-                text: "No monitors selected — the clock will be hidden on every output."
+                text: "No monitors selected — the clock will be hidden on every output. Re-open settings with: omarchy-shell shell summon MASH2RAFI.orbital-clock \"{}\""
                 color: Color.urgent
                 font.family: Style.font.family
                 font.pixelSize: Style.font.caption

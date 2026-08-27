@@ -5,10 +5,19 @@
   "version": "1.0.0",
   "author": "MASH2RAFI",
   "description": "Desktop orbital clock with smooth minute/second rings, independent sizing controls, configurable ring arc, and a three-tab GUI settings panel on the wallpaper layer",
-  "kinds": ["service", "panel"],
+  "kinds": ["service", "panel", "bar-widget"],
+  "keepLoaded": true,
   "entryPoints": {
     "service": "Service.qml",
-    "panel": "SettingsPanel.qml"
+    "panel": "SettingsPanel.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Orbital clock",
+    "description": "Toggle the wallpaper orbital clock on or off; right-click for settings.",
+    "category": "Widgets",
+    "allowMultiple": false,
+    "defaultSection": "center"
   },
   "schema": [
     {
@@ -52,6 +61,13 @@
       "label": "Position",
       "defaultValue": "middle-right",
       "description": "Anchor on the wallpaper: top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right"
+    },
+    {
+      "key": "clockEnabled",
+      "type": "boolean",
+      "label": "Show clock",
+      "defaultValue": true,
+      "description": "Master visibility toggle — use the bar widget to show or hide the clock"
     },
     {
       "key": "use24h",

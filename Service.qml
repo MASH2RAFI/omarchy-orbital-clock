@@ -15,10 +15,7 @@ Item {
   property var manifest: null
 
   readonly property string pluginId: manifest && manifest.id ? manifest.id : "MASH2RAFI.orbital-clock"
-  readonly property var pluginEntry: {
-    if (shell && shell.shellConfig) shell.shellConfig
-    return Config.entryOrDefault(shell, root.pluginId)
-  }
+  readonly property var pluginEntry: Config.entryOrDefault(shell, root.pluginId)
   readonly property var cfg: Clock.readSettings(root.pluginEntry)
   readonly property var pos: Clock.parsePosition(root.cfg.position)
 
@@ -66,6 +63,11 @@ Item {
       root.cfg.perMonitorScale,
       root.cfg.scaleReferenceHeight
     )
+  }
+
+  function openSettings() {
+    if (root.shell && typeof root.shell.summon === "function")
+      root.shell.summon(root.pluginId, "{}")
   }
 
   function placeClock(item, panel) {
@@ -167,6 +169,7 @@ Item {
       readonly property var hyprMonitor: Hyprland.monitorFor(modelData)
       readonly property real screenRefreshRate: Clock.refreshRateForMonitor(hyprMonitor)
       readonly property bool clockVisible: screenActive
+        && root.cfg.clockEnabled !== false
         && root.shouldShowOnScreen(modelData)
         && !remapGuard.remapping
 
@@ -210,16 +213,6 @@ Item {
           enabled: modelData !== null && modelData !== undefined
           function onWidthChanged() { clockHost.relayout() }
           function onHeightChanged() { clockHost.relayout() }
-        }
-
-        MouseArea {
-          anchors.fill: parent
-          acceptedButtons: Qt.RightButton
-          onClicked: function(mouse) {
-            if (mouse.button !== Qt.RightButton) return
-            if (root.shell && typeof root.shell.summon === "function")
-              root.shell.summon(root.pluginId, "{}")
-          }
         }
 
         Connections {
@@ -269,6 +262,21 @@ Item {
           ringGap: root.cfg.ringGap
           ringArcDegrees: root.cfg.ringArcDegrees
           ringTransparency: root.cfg.ringTransparency
+        }
+
+        // Larger hit target — the clock chrome is often small (corners, minimal layout).
+        MouseArea {
+          z: 20
+          anchors.centerIn: parent
+          width: Math.max(clockHost.width + Style.space(56), Style.space(180))
+          height: Math.max(clockHost.height + Style.space(56), Style.space(180))
+          acceptedButtons: Qt.RightButton | Qt.LeftButton
+          hoverEnabled: false
+          onClicked: function(mouse) {
+            if (mouse.button === Qt.RightButton)
+              root.openSettings()
+          }
+          onDoubleClicked: root.openSettings()
         }
       }
     }

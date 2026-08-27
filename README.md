@@ -131,7 +131,18 @@ The panel has three tabs with a **sticky live preview** at the top. Changes appl
 
 Each monitor has a **Show clock on this monitor** toggle; **Select all** / **Select none** are at the top of the Monitors tab.
 
-You can also open it from the terminal:
+### Bar widget
+
+When the plugin is enabled, a **bar widget** is added to your Omarchy bar (default: center section, after the clock). Omarchy removes it automatically when you disable or uninstall the plugin.
+
+| Action | Effect |
+|--------|--------|
+| **Left click** | Toggle the wallpaper clock on/off (`clockEnabled`) |
+| **Right click** | Open settings |
+
+Move it like any bar widget: `omarchy bar move MASH2RAFI.orbital-clock --section center --after omarchy.clock`
+
+You can also open settings from the terminal:
 
 ```bash
 omarchy-shell shell summon MASH2RAFI.orbital-clock "{}"
@@ -152,6 +163,7 @@ Close with **Esc**, clicking the scrim, or the **Close** button.
 | `centerLayout` | string | `orbit` | Layout style — see [Layout styles](#layout-styles) |
 | `use24h` | boolean | `false` | 24-hour hour label |
 | `showSeconds` | boolean | `true` | Show outer seconds ring and capsule |
+| `clockEnabled` | boolean | `true` | Master visibility toggle (bar widget) |
 | `showDate` | boolean | `true` | Show date block under the hour |
 | `accentMode` | string | `contrast` | Ring colors — `contrast` (opposite theme bg), `accent`, `theme`, `mono` |
 | `ringDiameter` | number | `0.40` | Outer ring size (% of screen height, 25–55%) — independent of layout size |
@@ -280,6 +292,7 @@ omarchy-orbital-clock/
 │   ├── reference-light-wallpaper.png
 │   └── reference-dark-layers.png
 ├── Service.qml            # Layer-shell window, placement, config wiring
+├── BarWidget.qml          # Bar toggle + settings shortcut
 ├── OrbitalClockFace.qml   # Clock UI: rings, capsules, hour, date
 ├── RingCanvas.qml         # 60-tick ring dial (minute + second rings)
 ├── DateColumn.qml         # Shared date/weekday/AM-PM column

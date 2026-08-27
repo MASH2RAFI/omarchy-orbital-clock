@@ -61,9 +61,12 @@ Item {
     face.screenMargin,
     face.screenInsets
   )
-  readonly property real secondRadius: Math.max(80, face.fitOuterRadius)
   readonly property real ringGapPx: Clock.clampRingGap(face.ringGap)
-  readonly property real minuteRadius: Math.max(64, face.secondRadius - face.ringGapPx)
+  readonly property real outerRadius: Math.max(80, face.fitOuterRadius)
+  readonly property real minuteRadius: face.showSeconds
+    ? Math.max(64, face.outerRadius - face.ringGapPx)
+    : Math.max(64, face.outerRadius)
+  readonly property real secondRadius: face.showSeconds ? face.outerRadius : face.minuteRadius
   readonly property real dialSize: Math.round(face.secondRadius * 2 + face.labelPad * 2)
   readonly property real hourSize: Clock.hourSizeFromScale(face.hourScale, face.spec.hourSizeFactor)
   readonly property real centerDateGap: Math.round(12 * face.dateScale)
@@ -312,7 +315,9 @@ Item {
     text: face.minuteCapsuleText
 
     readonly property point focusPos: face.capsulePoint(
-      face.spec.singleCapsule ? face.secondRadius : face.minuteRadius,
+      face.spec.singleCapsule
+        ? (face.showSeconds ? face.secondRadius : face.minuteRadius)
+        : face.minuteRadius,
       face.minuteCapsuleRenderAngle
     )
     x: focusPos.x - width / 2

@@ -102,7 +102,8 @@ Canvas {
     ctx.reset()
     ctx.clearRect(0, 0, width, height)
 
-    var guideR = canvas.secondRadius + Math.round(16 * canvas.chromeScale) * 0.42
+    var outerR = canvas.showSeconds ? canvas.secondRadius : canvas.minuteRadius
+    var guideR = outerR + Math.round(16 * canvas.chromeScale) * 0.42
     var lw = Math.max(1, canvas.chromeScale * 0.8)
     var guideAlpha = 0.14 * canvas.ringStrength * (canvas.arcEmphasis ? 2 : 1)
 
